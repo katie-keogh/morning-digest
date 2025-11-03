@@ -1,0 +1,45 @@
+name: Morning Digest
+
+on:
+  schedule:
+    # This runs every day at 07:00 Europe/Dublin (which is UTC+0 in winter)
+    - cron: '0 7 * * *'
+  workflow_dispatch: {}  # manual trigger in Actions UI
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run digest
+      env:
+        SMTP_HOST: smtp.gmail.com
+        SMTP_PORT: '587'
+        SMTP_USER: ${{ secrets.SMTP_USER }}
+        SMTP_PASS: ${{ secrets.SMTP_PASS }}
+        EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+        EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        TZ: 'Europe/Dublin'
+        OWM_KEY: ${{ secrets.OWM_KEY }}
+        OWM_CITY: ${{ secrets.OWM_CITY }}
+        NEWSAPI_KEY: ${{ secrets.NEWSAPI_KEY }}
+        GMAPS_KEY: ${{ secrets.GMAPS_KEY }}
+        ORIGIN: ${{ secrets.ORIGIN }}
+        DESTINATION: ${{ secrets.DESTINATION }}
+        USE_GOOGLE_CAL: ${{ secrets.USE_GOOGLE_CAL }}
+        TODOIST_TOKEN: ${{ secrets.TODOIST_TOKEN }}
+      run: |
+        python digest.py

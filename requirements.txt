@@ -1,0 +1,8 @@
+requests
+Jinja2
+python-dateutil
+pytz
+google-api-python-client>=2.0.0     # optional (Google Calendar)
+google-auth-httplib2                # optional
+google-auth-oauthlib                 # optional
+caldav
