@@ -42,4 +42,4 @@ jobs:
         USE_GOOGLE_CAL: ${{ secrets.USE_GOOGLE_CAL }}
         TODOIST_TOKEN: ${{ secrets.TODOIST_TOKEN }}
       run: |
-        python digest.py
+        python main-digest-app.py
