@@ -339,6 +339,7 @@ def main():
     commute = get_commute_time()
     news_ire = get_news(sources="the-irish-times,independent-ie,irish-examiner")
     news = get_news()
+    tech_news = get_news(sources="techcrunch,the-verge,wired")
     quote = get_quote()
     wotd = get_word_of_the_day()
     history = get_history_today()
@@ -351,6 +352,7 @@ def main():
         "commute": commute,
         "news_ire": news_ire,
         "news": news,
+        "tech_news": tech_news,
         "quote": quote,
         "word_of_the_day": wotd,
         "history_today": history

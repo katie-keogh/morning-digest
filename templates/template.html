@@ -96,6 +96,43 @@
   </div>
 
   <div class="card">
+    <div class="section-title">Top news - World Wide</div>
+    {% if news %}
+      <ul>
+      {% for n in news %}
+        <li>
+          {% if n.url %}
+            <a href="{{ n.url }}">{{ n.title }}</a>
+          {% else %}
+            {{ n.title }}
+          {% endif %}
+        </li>
+      {% endfor %}
+      </ul>
+    {% else %}
+      <div class="muted">No news available</div>
+    {% endif %}
+  </div>
+
+  <div class="card">
+    <div class="section-title">Tech News</div>
+    {% if tech_news %}
+      <ul>
+      {% for n in tech_news %}
+        <li>
+          {% if n.url %}
+            <a href="{{ n.url }}">{{ n.title }}</a>
+          {% else %}
+            {{ n.title }}
+          {% endif %}
+        </li>
+      {% endfor %}
+      </ul>
+    {% else %}
+      <div class="muted">No tech news available</div>
+    {% endif %}
+
+  <div class="card">
     <div class="section-title">History Today</div>
     {% if history_today %}
       <ul>
